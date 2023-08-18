@@ -50,7 +50,6 @@ const handleShowPosts = () => {
            </div>
             `
             
-
              postContent.innerHTML = newPost
 
              document.getElementById('post-container').appendChild(postContent)

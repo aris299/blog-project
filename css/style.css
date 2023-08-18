@@ -57,7 +57,9 @@ section {
     width: 100%;
 }
 a {
-    color: #fff;
+    color:aqua;
+    font-size: 20px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 /* Header */
@@ -117,7 +119,6 @@ header.shadow .logo {
     align-items: center;
 }
 .home-text {
-    color: var(--bg-color);
     text-align: center;
 }
 
@@ -199,12 +200,12 @@ header.shadow .logo {
     border-radius: 4px;
 }
 
-/* .post{
+ .post{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, auto));
     justify-content: center;
     gap: 1.5rem;
-} */
+} 
 
 .post-box {
     background: var(--bg-color);
