@@ -1,4 +1,8 @@
 // nav background
+let posts = []
+const res = localStorage.getItem('posts')
+     posts = res ? JSON.parse(res) : []
+     console.log(posts);
 let header = document.querySelector("header");
 
 window.addEventListener("scroll", () => {
@@ -8,15 +12,11 @@ window.addEventListener("scroll", () => {
 $(document).ready(function () {
     $(".filter-item").click(function () {
         const value = $(this).attr("data-filter");
-        if (value == "all"){
-            $(".post-box").show("1000")
-        } else{
-            $(".post-box")
-                .not("." + value)
-                .hide(1000);
-            $(".post-box")
-            .filter("." + value)
-            .show("1000")
+        if (value === "food"){
+            const postsFood = posts.filter((item) =>{
+                return item.category.includes('food')
+            })
+            console.log(postsFood);
         }
     });
     $(".filter-item").click(function () {
@@ -24,9 +24,8 @@ $(document).ready(function () {
     });
 });
 
+
 const handleShowPosts = () => {
-    const res = localStorage.getItem('posts')
-    const posts = res ? JSON.parse(res) : []
     if (posts.length > 0) {
         posts.forEach((post, index) => {
 
@@ -34,6 +33,7 @@ const handleShowPosts = () => {
 
             const postContent = document.createElement('div')
             postContent.setAttribute('class', ' col-4')
+            postContent.setAttribute('id',`posts${index}`)
             postContent.setAttribute('style', 'padding: 0 10px')
             const newPost = `
             <div class="post-box food">
@@ -47,6 +47,7 @@ const handleShowPosts = () => {
                 <img src="https://social.webestica.com/assets/images/avatar/04.jpg" alt="" class="profile-img">
                 <span class="profile-name">judy</span>
             </div>
+            <button onclick=handleRemove(${index})><i class="fa-solid fa-xmark"></i></button>
            </div>
             `
             
@@ -60,3 +61,8 @@ const handleShowPosts = () => {
 }
 
 handleShowPosts()
+function handleRemove(index){
+    posts.splice(index,1)
+    localStorage.setItem('posts',JSON.stringify(posts))
+    document.getElementById(`posts${index}`).remove()
+}
